@@ -8,7 +8,7 @@
 <meta property="og:description" content="Know exactly what's broken and what it's costing you. 1-on-1 session, written report, only $497.">
 <meta property="og:url" content="https://audit.kodee.co/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://audit.kodee.co/og-image.jpg"><!-- ▼ Replace with a real 1200×630 hero screenshot -->
+<meta property="og:image" content="https://audit.kodee.co/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -95,6 +95,7 @@ nav {
 .btn-lime { background: var(--blue); color: #fff; }
 .btn-lime:hover { background: var(--blue-d); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,74,173,0.25); }
 .btn-lime:active { transform: scale(0.98); }
+.btn-lime:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .btn-dark { background: var(--black); color: #fff; border: 1.5px solid rgba(255,255,255,0.15); }
 .btn-dark:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
 .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
@@ -345,12 +346,6 @@ details[open] .faq-plus { transform: rotate(45deg); background: var(--blue-bg); 
 .form-btn-wrap { margin-top: 20px; }
 .form-note { font-size: 0.76rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
 
-/* Success state */
-.form-success { display: none; text-align: center; padding: 48px 24px; }
-.success-icon { font-size: 2.8rem; margin-bottom: 16px; }
-.form-success h3 { font-size: 1.25rem; margin-bottom: 8px; }
-.form-success p { color: var(--muted); font-size: 0.92rem; }
-
 /* ── FOOTER ──────────────────────── */
 footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07); padding: 32px 0; }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; }
@@ -409,14 +404,13 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
 <!-- ══ NAV ══════════════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <!-- ▼ REPLACE src with your Kodee logo file. Recommended: SVG or PNG with transparent background, white version for dark nav -->
-    <a href="#top" class="nav-logo-wrap" data-manus_clickable="true" data-manus_click_id="1">
+    <a href="#top" class="nav-logo-wrap">
       <img src="YOUR-LOGO-HERE.svg" alt="Kodee" class="nav-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="display: none;">
       <div class="nav-logo-ph" style="display: flex;">Logo</div>
     </a>
     <div class="nav-right">
       <span class="nav-price">Workflow Audit · Only $497</span>
-      <a href="#book" class="btn btn-lime" data-manus_clickable="true" data-manus_click_id="2">Book Now</a>
+      <a href="#book" class="btn btn-lime">Book Now</a>
     </div>
   </div>
 </nav>
@@ -433,8 +427,8 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
     <p class="hero-owner-line">Not a developer. Not an AI consultant. A business owner who fixed his own operations — and now does it for others.</p>
 
     <div class="hero-cta-row">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true" data-manus_click_id="3">Book Your Audit · Only $497</a>
-      <a href="#how" class="btn btn-dark" style="background:transparent; border: 1.5px solid rgba(255,255,255,0.25); color:#fff;" data-manus_clickable="true" data-manus_click_id="4">See how it works</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Your Audit · Only $497</a>
+      <a href="#how" class="btn btn-dark" style="background:transparent; border: 1.5px solid rgba(255,255,255,0.25); color:#fff;">See how it works</a>
     </div>
     <p class="hero-micro"><strong>$497 credited toward your build.</strong> No lock-in.</p>
 
@@ -518,7 +512,6 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
           <li><span class="x">✕</span> No idea what to automate or where to start</li>
         </ul>
 
-        <!-- Cost anchor -->
         <div class="vision-list">
           <p class="vision-label">It could look like this instead</p>
           <ul>
@@ -535,11 +528,10 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
           <p>2 staff hours wasted daily = <strong>~$2,000/month</strong> at median SG wages. The audit is $497 — credited toward your build.</p>
         </div>
 
-        <a href="#book" class="btn btn-lime btn-arrow" data-manus_clickable="true">Get Your Audit · Only $497</a>
+        <a href="#book" class="btn btn-lime btn-arrow">Get Your Audit · Only $497</a>
       </div>
 
       <div class="fi fi-d1">
-        <!-- ▼ ADD IMAGE: Sam in conversation with a business owner, mapping out a workflow on a whiteboard or laptop -->
         <div class="img-ph">
           <div class="ph-ico">🖼️</div>
           <div class="ph-title">Add image here</div>
@@ -602,7 +594,6 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
       </div>
 
       <div class="fi fi-d1">
-        <!-- ▼ ADD IMAGE: Example of an audit report excerpt or a clean document mockup — keep it realistic, not generic stock -->
         <div class="img-ph" style="min-height:440px">
           <div class="ph-ico">📄</div>
           <div class="ph-title">Add image here</div>
@@ -612,7 +603,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
     </div>
 
     <div style="text-align:center; margin-top:52px" class="fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">Book Your Audit · Only $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Your Audit · Only $497</a>
     </div>
   </div>
 </section>
@@ -666,7 +657,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
     </div>
 
     <div style="text-align:center; margin-top:48px" class="fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">Book Your Audit · Only $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Your Audit · Only $497</a>
     </div>
   </div>
 </section>
@@ -706,7 +697,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
     </div>
 
     <div class="steps-cta fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">Book Now · Only $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Now · Only $497</a>
     </div>
   </div>
 </section>
@@ -756,7 +747,6 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
       </div>
 
       <div>
-        <!-- ▼ ADD IMAGE: Screenshot of the Lovable reservation app dashboard, or a photo from the F&B facility -->
         <div class="img-ph" style="min-height:400px">
           <div class="ph-ico">🖼️</div>
           <div class="ph-title">Add case study image</div>
@@ -765,7 +755,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
       </div>
     </div>
     <div style="text-align:center; margin-top:44px" class="fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">This is what an audit unlocks · Book yours $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">This is what an audit unlocks · Book yours $497</a>
     </div>
   </div>
 </section>
@@ -808,12 +798,10 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
     </div>
 
     <div style="text-align:center; margin-top:44px" class="fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">Book Your Audit · Only $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Your Audit · Only $497</a>
     </div>
   </div>
 </section>
-
-
 
 
 <!-- ══ FAQ ══════════════════════════════════════════════════════════════ -->
@@ -825,57 +813,32 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
 
     <div class="faq-wrap fi">
       <details open="">
-        <summary data-manus_clickable="true">
-          How long is the audit session?
-          <span class="faq-plus">+</span>
-        </summary>
+        <summary>How long is the audit session? <span class="faq-plus">+</span></summary>
         <p class="faq-body">Up to 90 minutes. Most run 60–80. We go at your pace.</p>
       </details>
-
       <details>
-        <summary data-manus_clickable="true">
-          Is it online or in person?
-          <span class="faq-plus">+</span>
-        </summary>
+        <summary>Is it online or in person? <span class="faq-plus">+</span></summary>
         <p class="faq-body">Both. Your call. In-person in Singapore or Zoom.</p>
       </details>
-
       <details>
-        <summary data-manus_clickable="true">
-          What if I just want the advice — not a build?
-          <span class="faq-plus">+</span>
-        </summary>
+        <summary>What if I just want the advice — not a build? <span class="faq-plus">+</span></summary>
         <p class="faq-body">Fine. The audit stands on its own. No obligation to build with us.</p>
       </details>
-
       <details>
-        <summary data-manus_clickable="true">
-          How is this different from hiring a consultant?
-          <span class="faq-plus">+</span>
-        </summary>
-        <p class="faq-body">
-          Consultants give you a deck. We give you a specific action list — what to fix, in what order, what it'll save you. And if you want us to build it, we can. Most consultants can't do that. We're also not charging $5,000 for the diagnosis.
-        </p>
+        <summary>How is this different from hiring a consultant? <span class="faq-plus">+</span></summary>
+        <p class="faq-body">Consultants give you a deck. We give you a specific action list — what to fix, in what order, what it'll save you. And if you want us to build it, we can. Most consultants can't do that. We're also not charging $5,000 for the diagnosis.</p>
       </details>
-
       <details>
-        <summary data-manus_clickable="true">
-          When do I get the report?
-          <span class="faq-plus">+</span>
-        </summary>
+        <summary>When do I get the report? <span class="faq-plus">+</span></summary>
         <p class="faq-body">Within 7 working days. If urgent, mention it in the intake form.</p>
       </details>
-
       <details>
-        <summary data-manus_clickable="true">
-          How does the $497 credit toward a build work?
-          <span class="faq-plus">+</span>
-        </summary>
+        <summary>How does the $497 credit toward a build work? <span class="faq-plus">+</span></summary>
         <p class="faq-body">The $497 comes off your build in full. Minimum build starts at $3,000.</p>
       </details>
     </div>
     <div style="text-align:center; margin-top:44px" class="fi">
-      <a href="#book" class="btn btn-lime btn-lg btn-arrow" data-manus_clickable="true">Book Your Audit · Only $497</a>
+      <a href="#book" class="btn btn-lime btn-lg btn-arrow">Book Your Audit · Only $497</a>
       <p style="font-size:0.8rem; color:var(--muted); margin-top:12px;">Limited slots. No payment until we confirm your booking.</p>
     </div>
   </div>
@@ -886,7 +849,6 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
   <div class="wrap">
     <div class="sam-block fi">
       <div class="sam-photo">
-        <!-- ▼ ADD: Sam's headshot — warm, real, not a corporate shot. Square crop works best. -->
         <div class="img-ph img-ph-sm" style="min-height:180px; width:180px; flex-shrink:0;">
           <div class="ph-ico">📷</div>
           <div class="ph-title">Sam's photo</div>
@@ -905,13 +867,13 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
         <p style="color:var(--muted); font-size:0.95rem; line-height:1.7; margin-bottom:0;">
           That's what I look for in the audit. I look at your business the way I looked at mine — as an owner, not a developer.
         </p>
-
-
       </div>
     </div>
   </div>
 </section>
 
+
+<!-- ══ BOOK / FORM ══════════════════════════════════════════════════════ -->
 <section class="section dark-section" id="book">
   <div class="wrap">
     <div class="book-inner">
@@ -919,9 +881,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
       <div class="book-left fi">
         <span class="pill pill-lime">Book your audit</span>
         <h2>Stop guessing what to fix.</h2>
-        <p class="lead">
-          One session. One report. $497 — limited slots.
-        </p>
+        <p class="lead">One session. One report. $497 — limited slots.</p>
         <p class="founding-signal">Taking a limited number of founding audit clients. You get Sam directly — not a team, not a template.</p>
 
         <div class="next-steps">
@@ -952,51 +912,52 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
         </div>
       </div>
 
-      <!-- FORM -->
+      <!-- ▼▼▼ WORKING FORM — submits to soa@storiesofasia.co via FormSubmit.co ▼▼▼ -->
       <div class="fi fi-d1">
         <div class="book-form-wrap">
           <h3>Audit intake</h3>
           <p class="form-price">Only <strong>$497</strong> · Credited toward build · Limited slots</p>
-          <!-- ▼ TODO: Replace this form with a Calendly or TidyCal embed so visitors
-               pick a real slot and pay immediately — removes the 2-day async gap.
-               Embed code: <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_LINK"></div>
-               Free plan works. Paid plan ($10/mo) enables payment collection at booking. -->
 
-          <div id="form-fields">
-            <!--
-              TODO: Connect this form to your backend.
-              Options: Tally (tally.so), Typeform, or your own POST endpoint.
-              Set the action attribute on the form, or replace the submit handler below.
-            -->
+          <form action="https://formsubmit.co/soa@storiesofasia.co" method="POST" id="audit-form">
+
+            <!-- FormSubmit config (hidden inputs) -->
+            <input type="hidden" name="_subject" value="🚀 New Kodee Audit Intake">
+            <input type="hidden" name="_next" value="https://audit.kodee.co/thank-you.html">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_autoresponse" value="Thanks for your audit intake — we've received it and will be in touch within 1 business day with a payment link and a few possible session slots. — Sam, Kodee">
+            <!-- Honeypot anti-spam (must stay empty) -->
+            <input type="text" name="_honey" style="display:none">
+
             <div class="fg-row">
               <div class="fg">
-                <label for="fname" data-manus_clickable="true">Your name</label>
-                <input type="text" id="fname" name="name" placeholder="Wei Ling" required="" style="" data-manus_clickable="true">
+                <label for="fname">Your name</label>
+                <input type="text" id="fname" name="name" placeholder="Wei Ling" required>
                 <span class="fg-err">Please enter your name.</span>
               </div>
               <div class="fg">
-                <label for="fbiz" data-manus_clickable="true">Business name</label>
-                <input type="text" id="fbiz" name="business" placeholder="My Business Pte Ltd" required="" style="" data-manus_clickable="true">
+                <label for="fbiz">Business name</label>
+                <input type="text" id="fbiz" name="business" placeholder="My Business Pte Ltd" required>
                 <span class="fg-err">Please enter your business name.</span>
               </div>
             </div>
 
             <div class="fg-row">
               <div class="fg">
-                <label for="femail" data-manus_clickable="true">Email</label>
-                <input type="email" id="femail" name="email" placeholder="you@business.com" required="" style="" data-manus_clickable="true">
+                <label for="femail">Email</label>
+                <input type="email" id="femail" name="email" placeholder="you@business.com" required>
                 <span class="fg-err">Please enter a valid email.</span>
               </div>
               <div class="fg">
-                <label for="fphone" data-manus_clickable="true">Phone / WhatsApp</label>
-                <input type="tel" id="fphone" name="phone" placeholder="+65 9123 4567" style="" data-manus_clickable="true">
+                <label for="fphone">Phone / WhatsApp</label>
+                <input type="tel" id="fphone" name="phone" placeholder="+65 9123 4567">
               </div>
             </div>
 
             <div class="fg">
               <label for="fsize">Team size</label>
-              <select id="fsize" name="team_size" required="" data-manus_clickable="true">
-                <option value="" disabled="" selected="">Select team size</option>
+              <select id="fsize" name="team_size" required>
+                <option value="" disabled selected>Select team size</option>
                 <option>Just me</option>
                 <option>2–5 people</option>
                 <option>6–20 people</option>
@@ -1009,29 +970,22 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
 
             <div class="fg">
               <label for="fproblem">What workflow issue is slowing you down?</label>
-              <textarea id="fproblem" name="workflow_problem" placeholder="E.g. Our patient intake process is still done on paper. Staff spend 30 mins per new patient on admin that should take 5. We've tried an app but it didn't stick." required="" style="" data-manus_clickable="true"></textarea>
+              <textarea id="fproblem" name="workflow_problem" placeholder="E.g. Our patient intake process is still done on paper. Staff spend 30 mins per new patient on admin that should take 5. We've tried an app but it didn't stick." required></textarea>
               <span class="fg-err">Please describe your workflow issue.</span>
             </div>
 
             <div class="form-btn-wrap">
-              <button type="button" onclick="submitForm()" class="btn btn-lime btn-lg btn-full" data-manus_clickable="true">Submit Intake · Only $497 →</button>
+              <button type="submit" id="submit-btn" class="btn btn-lime btn-lg btn-full">Submit Intake · Only $497 →</button>
             </div>
             <p class="form-note">We review and send a payment link. No payment until we confirm.</p>
-            <div style="text-align:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
-              <p style="font-size:0.8rem; color:var(--muted); margin-bottom:8px;">Prefer to chat first?</p>
-              <a href="https://wa.me/6500000000" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:500; color:var(--blue); text-decoration:none;" data-manus_clickable="true">
-                <!-- ▼ Replace 6500000000 with your actual WhatsApp number -->
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
-                Message us on WhatsApp →
-              </a>
-            </div>
-          </div>
+          </form>
 
-          <!-- Success state -->
-          <div class="form-success" id="form-success">
-            <div class="success-icon">✅</div>
-            <h3>Intake received.</h3>
-            <p>We'll reach out within 1 business day.</p>
+          <div style="text-align:center; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+            <p style="font-size:0.8rem; color:var(--muted); margin-bottom:8px;">Prefer to chat first?</p>
+            <a href="https://wa.me/6500000000" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; font-size:0.88rem; font-weight:500; color:var(--blue); text-decoration:none;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+              Message us on WhatsApp →
+            </a>
           </div>
 
         </div>
@@ -1045,8 +999,7 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
 <footer>
   <div class="wrap">
     <div class="foot-inner">
-      <!-- ▼ REPLACE src with your Kodee logo file (white version) -->
-      <a href="#top" class="nav-logo-wrap" data-manus_clickable="true">
+      <a href="#top" class="nav-logo-wrap">
         <img src="YOUR-LOGO-HERE.svg" alt="Kodee" class="nav-logo-img" style="height: 28px; display: none;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="nav-logo-ph" style="display: flex;">Logo</div>
       </a>
@@ -1061,7 +1014,6 @@ footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.07);
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); } });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.fi').forEach(el => obs.observe(el));
 
 /* ── FAQ accordion: close others on open ─ */
@@ -1075,53 +1027,36 @@ document.querySelectorAll('details').forEach(d => {
   });
 });
 
-/* ── Form submit handler ──────────────── */
-function submitForm() {
-  let valid = true;
+/* ── Form: visual error states + submit button feedback ─ */
+const form = document.getElementById('audit-form');
+const submitBtn = document.getElementById('submit-btn');
 
-  function validate(id, groupId) {
-    const el = document.getElementById(id);
-    const grp = document.getElementById(groupId || id).closest('.fg');
-    if (!grp) return;
-    if (!el.value.trim()) {
-      grp.classList.add('has-error');
-      valid = false;
-    } else {
-      grp.classList.remove('has-error');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    let valid = true;
+    ['fname','fbiz','femail','fsize','fproblem'].forEach(id => {
+      const el = document.getElementById(id);
+      const grp = el.closest('.fg');
+      if (!el.value.trim()) {
+        grp.classList.add('has-error');
+        valid = false;
+      } else {
+        grp.classList.remove('has-error');
+      }
+    });
+
+    if (!valid) {
+      e.preventDefault();
+      const firstErr = document.querySelector('.fg.has-error input, .fg.has-error select, .fg.has-error textarea');
+      if (firstErr) firstErr.focus();
+      return;
     }
-  }
 
-  validate('fname');
-  validate('fbiz');
-  validate('femail');
-  validate('fsize');
-  validate('fproblem');
-
-  if (!valid) {
-    document.querySelector('.fg.has-error input, .fg.has-error select, .fg.has-error textarea').focus();
-    return;
-  }
-
-  /*
-   * TODO: Replace this block with your actual form submission.
-   *
-   * Option A — Tally (recommended, free):
-   *   window.location.href = 'https://tally.so/r/YOUR_FORM_ID';
-   *
-   * Option B — Custom endpoint:
-   *   fetch('/api/audit-intake', {
-   *     method: 'POST',
-   *     headers: { 'Content-Type': 'application/json' },
-   *     body: JSON.stringify({ name, email, teamSize: size, problem })
-   *   });
-   */
-  document.getElementById('form-fields').style.display = 'none';
-  const success = document.getElementById('form-success');
-  success.style.display = 'block';
-  success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Disable button to prevent double-submit; FormSubmit will redirect to thank-you page
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+  });
 }
 </script>
-
-
 
 </body></html>
