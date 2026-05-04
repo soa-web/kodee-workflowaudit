@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodee Preview — Features & Deployment Guide</title>
+  <meta name="description" content="Complete guide to Kodee Preview features, architecture, and deployment instructions for preview.kodee.co">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: #FBF8F3;
+      color: #1A1208;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Instrument Serif', serif;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 18, 8, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 221, 208, 0.2);
+      padding: 16px 0;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      font-size: 1.3rem;
+      color: #fff;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      margin-left: 32px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #E07A1F;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1A1208 0%, #2a2218 100%);
+      color: #fff;
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .hero .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: #E07A1F;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #B85E0D;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(224, 122, 31, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      border-color: #E07A1F;
+      color: #E07A1F;
+    }
+
+    /* Section */
+    section {
+      padding: 80px 0;
+    }
+
+    section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 16px;
+      color: #1A1208;
+    }
+
+    section > .container > p:first-of-type {
+      font-size: 1.1rem;
+      color: #7A6F60;
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 32px;
+      border-radius: 14px;
+      border: 1px solid #E5DDD0;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      border-color: #E07A1F;
+    }
+
+    .feature-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #1A1208;
+    }
+
+    .feature-card p {
+      color: #7A6F60;
+      font-size: 0.95rem;
+    }
+
+    /* Architecture Section */
+    .architecture {
+      background: #F5EFE4;
+    }
+
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .tech-item {
+      background: #fff;
+      padding: 24px;
+      border-radius: 9px;
+      border-left: 4px solid #E07A1F;
+    }
+
+    .tech-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #1A1208;
+    }
+
+    .tech-item .tech-name {
+      color: #E07A1F;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .tech-item p {
+      color: #7A6F60;
+      font-size: 0.9rem;
+    }
+
+    /* Deployment Steps */
+    .deployment-steps {
+      background: #fff;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .step {
+      background: #FBF8F3;
+      padding: 32px;
+      border-radius: 14px;
+      border: 2px solid #E5DDD0;
+      position: relative;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -16px;
+      left: 24px;
+      background: #E07A1F;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .step h3 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: #1A1208;
+    }
+
+    .step p {
+      color: #7A6F60;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .step code {
+      background: #1A1208;
+      color: #FEF3E2;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      display: block;
+      margin-top: 12px;
+      overflow-x: auto;
+    }
+
+    /* Components Section */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .component-card {
+      background: #fff;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid #E5DDD0;
+    }
+
+    .component-card h4 {
+      color: #E07A1F;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .component-card p {
+      color: #7A6F60;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Design Tokens */
+    .tokens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .token {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .token-color {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      border: 1px solid #E5DDD0;
+      flex-shrink: 0;
+    }
+
+    .token-info h4 {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      color: #1A1208;
+    }
+
+    .token-info p {
+      font-size: 0.8rem;
+      color: #7A6F60;
+    }
+
+    /* API Documentation */
+    .api-doc {
+      background: #1A1208;
+      color: #fff;
+      padding: 32px;
+      border-radius: 14px;
+      margin-top: 32px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    .api-doc .endpoint {
+      color: #E07A1F;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .api-doc .method {
+      color: #FEF3E2;
+      margin-bottom: 8px;
+    }
+
+    /* Checklist */
+    .checklist {
+      background: #F5EFE4;
+      padding: 32px;
+      border-radius: 14px;
+      margin-top: 32px;
+    }
+
+    .checklist ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .checklist li::before {
+      content: '✓';
+      color: #E07A1F;
+      font-weight: 700;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .checklist li span {
+      color: #7A6F60;
+    }
+
+    /* Footer */
+    footer {
+      background: #1A1208;
+      color: #fff;
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid rgba(229, 221, 208, 0.1);
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 16px;
+    }
+
+    footer a {
+      color: #E07A1F;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav .container {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      nav a {
+        margin-left: 0;
+      }
+
+      section {
+        padding: 48px 0;
+      }
+
+      .hero {
+        padding: 60px 0 48px;
+      }
+
+      .hero .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .steps-container {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        padding-top: 48px;
+      }
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+
+    .mt-32 {
+      margin-top: 32px;
+    }
+
+    .mb-16 {
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      color: #E07A1F;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FEF3E2;
+      color: #E07A1F;
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <h1>Kodee Preview</h1>
+      <div>
+        <a href="#features">Features</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#deployment">Deployment</a>
+        <a href="#components">Components</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Kodee Preview</h2>
+      <p class="subtitle">Turn business ideas into live visual app previews in 30 seconds using AI. A complete guide to features, architecture, and deployment.</p>
+      <div class="cta-buttons">
+        <a href="https://preview.kodee.co" class="btn btn-primary">View Live App →</a>
+        <a href="https://github.com/soa-web/kodee-workflowaudit" class="btn btn-secondary">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <div class="container">
+      <h2>Key Features</h2>
+      <p>Everything you need to generate and preview custom business solutions instantly.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>30-Second Generation</h3>
+          <p>Business owners describe their problem and receive a realistic HTML dashboard mockup in under 30 seconds using Claude AI.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🎨</div>
+          <h3>Production-Quality Design</h3>
+          <p>Generated previews look like real production apps with proper navigation, metrics, data tables, and industry-appropriate color schemes.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🇸🇬</div>
+          <h3>Singapore Context</h3>
+          <p>All generated mockups include realistic Singapore data: SGD pricing, local names, and business terminology relevant to the industry.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🔄</div>
+          <h3>Three-Screen Flow</h3>
+          <p>Intuitive user journey: form submission → animated loading screen → live preview with CTAs to convert leads.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">📱</div>
+          <h3>Fully Responsive</h3>
+          <p>Works seamlessly on desktop, tablet, and mobile devices. Form stacks intelligently, preview adapts to screen size.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🚀</div>
+          <h3>Ready for Vercel</h3>
+          <p>Deploy to production in minutes. Includes Vercel configuration, environment variable setup, and custom domain support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="architecture">
+    <div class="container">
+      <h2>Technology Stack</h2>
+      <p>Built with modern, production-ready technologies designed for speed and scalability.</p>
+
+      <div class="tech-stack">
+        <div class="tech-item">
+          <h4>Frontend</h4>
+          <div class="tech-name">React 19 + TypeScript</div>
+          <p>Fast, type-safe UI with component-based architecture. Tailwind CSS 4 for rapid styling.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>Backend</h4>
+          <div class="tech-name">Express.js</div>
+          <p>Lightweight server for API routing. Handles /api/generate endpoint with proper error handling.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>AI Engine</h4>
+          <div class="tech-name">Anthropic Claude Sonnet 4</div>
+          <p>Generates realistic, beautiful HTML mockups based on industry and problem description.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>Hosting</h4>
+          <div class="tech-name">Vercel</div>
+          <p>Serverless deployment with automatic scaling. Custom domain support and environment variables.</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>Typography</h4>
+          <div class="tech-name">Google Fonts</div>
+          <p>Instrument Serif for headings (premium feel), Sora for body text (readability).</p>
+        </div>
+
+        <div class="tech-item">
+          <h4>Design System</h4>
+          <div class="tech-name">Warm Minimalism</div>
+          <p>Earthy amber tones, generous whitespace, and craft-first aesthetic for trust and clarity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components Section -->
+  <section id="components">
+    <div class="container">
+      <h2>React Components</h2>
+      <p>Modular, reusable components that power the entire user experience.</p>
+
+      <div class="components-grid">
+        <div class="component-card">
+          <h4>IndustryChips</h4>
+          <p>3-column grid of emoji + label buttons for industry selection. Shows 9 options: F&B, Clinic, Education, Retail, Logistics, Services, Fitness, Real Estate, Other.</p>
+        </div>
+
+        <div class="component-card">
+          <h4>LoadingScreen</h4>
+          <p>Full-page overlay with amber spinning ring animation. Sequential step reveals with 0.8s, 2.2s, and 3.8s delays for transparency.</p>
+        </div>
+
+        <div class="component-card">
+          <h4>PreviewFrame</h4>
+          <p>Renders generated HTML in iframe using srcdoc attribute. 65vh height, 100% width, light grey background while loading.</p>
+        </div>
+
+        <div class="component-card">
+          <h4>ResultBar</h4>
+          <p>Dark header (#1A1208) with "Your Preview" badge and industry label. Right-aligned "Make it real with Kodee" CTA button.</p>
+        </div>
+
+        <div class="component-card">
+          <h4>CTAStrip</h4>
+          <p>White footer with "Love what you see?" heading. Two buttons: "Try another idea" (ghost) and "Let Kodee build it" (amber).</p>
+        </div>
+
+        <div class="component-card">
+          <h4>ProofStrip</h4>
+          <p>Three proof points with amber dot bullets below the form. Builds credibility with social proof and value propositions.</p>
+        </div>
+      </div>
+
+      <!-- Design Tokens -->
+      <h3 style="margin-top: 64px; margin-bottom: 24px;">Design Tokens</h3>
+      <div class="tokens-grid">
+        <div class="token">
+          <div class="token-color" style="background: #1A1208;"></div>
+          <div class="token-info">
+            <h4>--kodee-ink</h4>
+            <p>#1A1208 (Headings)</p>
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-color" style="background: #FBF8F3; border: 2px solid #E5DDD0;"></div>
+          <div class="token-info">
+            <h4>--kodee-cream</h4>
+            <p>#FBF8F3 (Background)</p>
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-color" style="background: #F5EFE4;"></div>
+          <div class="token-info">
+            <h4>--kodee-warm</h4>
+            <p>#F5EFE4 (Cards)</p>
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-color" style="background: #E07A1F;"></div>
+          <div class="token-info">
+            <h4>--kodee-amber</h4>
+            <p>#E07A1F (Primary)</p>
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-color" style="background: #FEF3E2;"></div>
+          <div class="token-info">
+            <h4>--kodee-amber-light</h4>
+            <p>#FEF3E2 (Hover)</p>
+          </div>
+        </div>
+
+        <div class="token">
+          <div class="token-color" style="background: #7A6F60;"></div>
+          <div class="token-info">
+            <h4>--kodee-muted</h4>
+            <p>#7A6F60 (Text)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deployment Section -->
+  <section id="deployment">
+    <div class="container">
+      <h2>Deployment Guide</h2>
+      <p>Step-by-step instructions to deploy Kodee Preview to production on Vercel.</p>
+
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Get Anthropic API Key</h3>
+          <p>Sign up at <a href="https://console.anthropic.com/" style="color: #E07A1F;">console.anthropic.com</a> and create an API key. This powers the Claude AI preview generation.</p>
+          <code>ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxx</code>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Connect GitHub to Vercel</h3>
+          <p>Import the GitHub repository (soa-web/kodee-workflowaudit) into your Vercel account. Vercel will auto-detect the Next.js/React configuration.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Add Environment Variable</h3>
+          <p>In Vercel Project Settings → Environment Variables, add your Anthropic API key. This keeps the key secure server-side.</p>
+          <code>ANTHROPIC_API_KEY=sk-ant-your-key</code>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Configure Custom Domain</h3>
+          <p>In Vercel Project Settings → Domains, add preview.kodee.co. Update your DNS CNAME record to point to Vercel.</p>
+          <code>preview → cname.vercel-dns.com</code>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Deploy</h3>
+          <p>Push to the main branch. Vercel automatically deploys on every push. Or manually trigger a deployment from the Vercel dashboard.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>Test Full Flow</h3>
+          <p>Visit https://preview.kodee.co, fill the form, and verify the preview generates correctly. Test on mobile and desktop.</p>
+        </div>
+      </div>
+
+      <!-- Deployment Checklist -->
+      <h3 style="margin-top: 64px; margin-bottom: 24px;">Pre-Deployment Checklist</h3>
+      <div class="checklist">
+        <ul>
+          <li><span>Add ANTHROPIC_API_KEY to Vercel environment variables</span></li>
+          <li><span>Connect GitHub repo to Vercel project</span></li>
+          <li><span>Set custom domain: preview.kodee.co → Vercel</span></li>
+          <li><span>Add CNAME in DNS: preview → cname.vercel-dns.com</span></li>
+          <li><span>Test full flow: form → loading → preview render</span></li>
+          <li><span>Test on mobile (form should stack to single column)</span></li>
+          <li><span>Test error states: empty form, API failure</span></li>
+          <li><span>Verify Vercel function timeout is 60s</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Documentation -->
+  <section style="background: #F5EFE4;">
+    <div class="container">
+      <h2>API Reference</h2>
+      <p>The /api/generate endpoint handles preview generation using Claude AI.</p>
+
+      <div class="api-doc">
+        <div class="endpoint">POST /api/generate</div>
+        <div class="method">Request Body:</div>
+        <pre>{
+  "industry": "F&B / Café",
+  "problem": "I want a dashboard where staff log tasks each day..."
+}</pre>
+        <div class="method" style="margin-top: 16px;">Response (Success):</div>
+        <pre>{
+  "html": "<!DOCTYPE html>..."
+}</pre>
+        <div class="method" style="margin-top: 16px;">Response (Error):</div>
+        <pre>{
+  "error": "Invalid input"
+}</pre>
+      </div>
+
+      <h3 style="margin-top: 48px; margin-bottom: 16px;">Validation Rules</h3>
+      <ul style="list-style: none; color: #7A6F60;">
+        <li>✓ Industry chip must be selected (9 options available)</li>
+        <li>✓ Problem textarea must be ≥ 20 characters</li>
+        <li>✓ API call timeout: 60 seconds (Anthropic calls typically 20–30s)</li>
+        <li>✓ Generated HTML must include &lt;html&gt; tag</li>
+        <li>✓ All CSS in one &lt;style&gt; tag, all JS in one &lt;script&gt; tag</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Local Development -->
+  <section>
+    <div class="container">
+      <h2>Local Development</h2>
+      <p>Set up and run Kodee Preview on your local machine for testing and development.</p>
+
+      <div class="api-doc" style="margin-top: 32px;">
+        <div class="method"># Clone the repository</div>
+        <pre>git clone https://github.com/soa-web/kodee-workflowaudit.git
+cd kodee-workflowaudit</pre>
+
+        <div class="method" style="margin-top: 16px;"># Install dependencies</div>
+        <pre>pnpm install</pre>
+
+        <div class="method" style="margin-top: 16px;"># Create .env.local</div>
+        <pre>cp .env.local.example .env.local
+# Add your ANTHROPIC_API_KEY to .env.local</pre>
+
+        <div class="method" style="margin-top: 16px;"># Start dev server</div>
+        <pre>pnpm dev
+# Open http://localhost:3000</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Metrics -->
+  <section style="background: #F5EFE4;">
+    <div class="container">
+      <h2>Success Metrics</h2>
+      <p>How we measure the effectiveness of Kodee Preview as a lead magnet.</p>
+
+      <div class="features-grid" style="margin-top: 48px;">
+        <div class="feature-card">
+          <div class="icon">⏱️</div>
+          <h3>Form Completion Time</h3>
+          <p>Business owner fills form in <strong>&lt; 2 minutes</strong>. Low friction entry point.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>Preview Generation Speed</h3>
+          <p>Preview generates in <strong>&lt; 30 seconds</strong>. Fast feedback loop builds confidence.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">😍</div>
+          <h3>Wow Factor</h3>
+          <p>Preview looks real enough that user says <strong>"wow, that's exactly what I want"</strong>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">🎯</div>
+          <h3>CTA Conversion</h3>
+          <p>User clicks "Let Kodee build it" and reaches out via <strong>kodee.co</strong>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">💰</div>
+          <h3>Deal Closure</h3>
+          <p>Kodee closes them as a <strong>DFY client ($3,000–$15,000 project)</strong>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Lead Quality</h3>
+          <p>Qualified leads with clear problem statement and visual validation of solution fit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section>
+    <div class="container">
+      <h2>Resources & Links</h2>
+      <p>Important links and documentation for building, deploying, and maintaining Kodee Preview.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 48px;">
+        <div class="feature-card">
+          <h3 style="color: #E07A1F; margin-bottom: 12px;">📚 Documentation</h3>
+          <ul style="list-style: none; color: #7A6F60;">
+            <li style="margin-bottom: 8px;"><a href="https://github.com/soa-web/kodee-workflowaudit" style="color: #E07A1F;">GitHub Repository</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://github.com/soa-web/kodee-workflowaudit/blob/main/README.md" style="color: #E07A1F;">Full README</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://github.com/soa-web/kodee-workflowaudit/blob/main/DESIGN_PHILOSOPHY.md" style="color: #E07A1F;">Design Philosophy</a></li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3 style="color: #E07A1F; margin-bottom: 12px;">🔗 External APIs</h3>
+          <ul style="list-style: none; color: #7A6F60;">
+            <li style="margin-bottom: 8px;"><a href="https://docs.anthropic.com/" style="color: #E07A1F;">Anthropic API Docs</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://vercel.com/docs" style="color: #E07A1F;">Vercel Documentation</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://react.dev" style="color: #E07A1F;">React Documentation</a></li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3 style="color: #E07A1F; margin-bottom: 12px;">🎨 Design Tools</h3>
+          <ul style="list-style: none; color: #7A6F60;">
+            <li style="margin-bottom: 8px;"><a href="https://tailwindcss.com" style="color: #E07A1F;">Tailwind CSS</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://fonts.google.com" style="color: #E07A1F;">Google Fonts</a></li>
+            <li style="margin-bottom: 8px;"><a href="https://github.com/soa-web/kodee-workflowaudit/blob/main/DESIGN_PHILOSOPHY.md" style="color: #E07A1F;">Design System</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <h3 style="margin-bottom: 24px;">Kodee Preview</h3>
+      <p>AI-Powered Idea-to-Preview Lead Magnet for Singapore SMEs</p>
+      <p style="margin-top: 24px; font-size: 0.9rem;">
+        Built with React, Express, and Claude AI. Hosted on Vercel. 
+        <a href="https://kodee.co">Learn more about Kodee →</a>
+      </p>
+      <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.4);">
+        © 2026 Kodee. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
